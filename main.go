@@ -6,7 +6,7 @@ import (
 
 	"github.com/braycarlson/asol"
 
-	"github.com/pipexlul/aramsnatcher/requests"
+	"github.com/pipexlul/aramsnatcher/internal/requests"
 )
 
 type Client struct {
