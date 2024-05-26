@@ -9,23 +9,23 @@ import (
 	myutils "github.com/pipexlul/aramsnatcher/utils"
 )
 
+const (
+	prefix = "/lol-summoner/v1/"
+)
+
 type LolSummoner struct{}
 
+// Endpoint builder
+func ep(resource string) string {
+	return fmt.Sprintf("%s%s", prefix, resource)
+}
+
 func (sum *LolSummoner) GetCurrentSummoner(a *asol.Asol) (*models.Summoner, error) {
-	req, err := a.NewGetRequest("/lol-summoner/v1/current-summoner")
+	resp, err := myutils.CreateAndExecuteRequest(a, models.GET, ep("current-summoner"), nil)
+
 	if err != nil {
-		log.Println("Request Error")
+		log.Println("GetCurrentSummoner Error")
 		fmt.Println(err)
-
-		return nil, err
-	}
-
-	resp, err := a.RiotRequest(req)
-	if err != nil {
-		log.Println("Response Error")
-		fmt.Println(err)
-
-		return nil, err
 	}
 
 	var summoner models.Summoner
