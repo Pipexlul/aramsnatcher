@@ -29,6 +29,14 @@ type Summoner struct {
 	XpUntilNextLevel int    `json:"xpUntilNextLevel"`
 }
 
+type SummonerStatus struct {
+	Ready bool `json:"ready"`
+}
+
 func (s *Summoner) String() string {
+	return fmt.Sprintf("%+v", *s)
+}
+
+func (s *SummonerStatus) String() string {
 	return fmt.Sprintf("%+v", *s)
 }

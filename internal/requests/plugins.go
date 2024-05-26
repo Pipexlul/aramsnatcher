@@ -8,5 +8,5 @@ import (
 
 type LolSummonerPlugin interface {
 	GetCurrentSummoner(a *asol.Asol) (*models.Summoner, error)
-	GetCurrentSummonerStatus()
+	GetCurrentSummonerStatus(a *asol.Asol) (*models.SummonerStatus, error)
 }

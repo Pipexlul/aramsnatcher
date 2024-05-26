@@ -40,6 +40,24 @@ func (sum *LolSummoner) GetCurrentSummoner(a *asol.Asol) (*models.Summoner, erro
 	return &summoner, nil
 }
 
-func (sum *LolSummoner) GetCurrentSummonerStatus() {
-	panic("not implemented") // TODO: Implement
+func (sum *LolSummoner) GetCurrentSummonerStatus(a *asol.Asol) (*models.SummonerStatus, error) {
+	resp, err := myutils.CreateAndExecuteRequest(a, models.GET, ep("status"), nil)
+
+	if err != nil {
+		log.Println("LolTest Error")
+		fmt.Println(err)
+
+		return nil, err
+	}
+
+	var status models.SummonerStatus
+	err = myutils.MapToStruct(resp.(map[string]interface{}), &status)
+	if err != nil {
+		log.Println("MapToStruct Error")
+		fmt.Println(err)
+
+		return nil, err
+	}
+
+	return &status, nil
 }

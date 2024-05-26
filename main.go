@@ -40,13 +40,23 @@ func main() {
 	client.OnLogin(func(a *asol.Asol) {
 		log.Println("OnLogin")
 
-		summoner, err := client.api.LolSummoner.GetCurrentSummoner(a)
+		// summoner, err := client.api.LolSummoner.GetCurrentSummoner(a)
+		// if err != nil {
+		// 	log.Println("Error getting current summoner")
+		// 	fmt.Println(err)
+		// }
+
+		// fmt.Println(summoner)
+
+		status, err := client.api.LolSummoner.GetCurrentSummonerStatus(a)
 		if err != nil {
-			log.Println("Error getting current summoner")
+			log.Println("Error getting current summoner status")
 			fmt.Println(err)
+
+			return
 		}
 
-		fmt.Println(summoner)
+		fmt.Println(status)
 	})
 
 	client.OnLogout(func(a *asol.Asol) {
